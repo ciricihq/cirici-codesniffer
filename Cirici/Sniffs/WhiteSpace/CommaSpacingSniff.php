@@ -19,14 +19,16 @@
  * Ensures no whitespaces and one whitespace is placed around each comma
  *
  */
-class Cirici_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sniff {
+class Cirici_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sniff
+{
 
-/**
- * Returns an array of tokens this test wants to listen for.
- *
- * @return array
- */
-    public function register() {
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
+    public function register()
+    {
         return array(T_COMMA);
     }
 
@@ -38,7 +40,8 @@ class Cirici_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Snif
  *    in the stack passed in $tokens.
  * @return void
  */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
 
         $next = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
@@ -58,5 +61,4 @@ class Cirici_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Snif
             $phpcsFile->addError($error, $next);
         }
     }
-
 }

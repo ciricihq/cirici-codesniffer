@@ -19,14 +19,16 @@
  * Ensures the use contains only one class.
  *
  */
-class Cirici_Sniffs_Formatting_OneClassPerUseSniff implements PHP_CodeSniffer_Sniff {
+class Cirici_Sniffs_Formatting_OneClassPerUseSniff implements PHP_CodeSniffer_Sniff
+{
 
 /**
  * Returns an array of tokens this test wants to listen for.
  *
  * @return array
  */
-    public function register() {
+    public function register()
+    {
         return array(T_USE);
     }
 
@@ -37,7 +39,8 @@ class Cirici_Sniffs_Formatting_OneClassPerUseSniff implements PHP_CodeSniffer_Sn
  * @param integer $stackPtr  The position of the current token in the stack passed in $tokens.
  * @return void
  */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
         $i = 2; // Ignore use word and whitespace
         $filename = $phpcsFile->getFilename();

@@ -20,14 +20,15 @@
  * or private, and that functions are named correctly.
  *
  */
-class Cirici_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff {
+class Cirici_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff
+{
 
-/**
- * A list of all PHP magic methods.
- *
- * @var array
- */
-    protected $_magicMethods = array(
+    /**
+     * A list of all PHP magic methods.
+     *
+     * @var array
+     */
+    protected $magicMethods = array(
         'construct',
         'destruct',
         'call',
@@ -45,22 +46,24 @@ class Cirici_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSni
         'invoke',
     );
 
-/**
- * Constructs a PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff.
- */
-    public function __construct() {
+    /**
+     * Constructs a PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff.
+     */
+    public function __construct()
+    {
         parent::__construct(array(T_CLASS, T_INTERFACE), array(T_FUNCTION), true);
     }
 
-/**
- * Processes the tokens within the scope.
- *
- * @param PHP_CodeSniffer_File $phpcsFile The file being processed.
- * @param integer $stackPtr The position where this token was found.
- * @param integer $currScope The position of the current scope.
- * @return void
- */
-    protected function processTokenWithinScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $currScope) {
+    /**
+     * Processes the tokens within the scope.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being processed.
+     * @param integer $stackPtr The position where this token was found.
+     * @param integer $currScope The position of the current scope.
+     * @return void
+     */
+    protected function processTokenWithinScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $currScope)
+    {
         $methodName = $phpcsFile->getDeclarationName($stackPtr);
         if ($methodName === null) {
             // Ignore closures.
@@ -81,7 +84,7 @@ class Cirici_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSni
         }
 
         // Ignore magic methods
-        if (preg_match('/^__(' . implode('|', $this->_magicMethods) . ')$/', $methodName)) {
+        if (preg_match('/^__(' . implode('|', $this->magicMethods) . ')$/', $methodName)) {
             return;
         }
 
@@ -135,14 +138,14 @@ class Cirici_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSni
         }
     }
 
-/**
- * Processes the tokens outside the scope.
- *
- * @param PHP_CodeSniffer_File $phpcsFile The file being processed.
- * @param integer $stackPtr  The position where this token was found.
- * @return void
- */
-    protected function processTokenOutsideScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    /**
+     * Processes the tokens outside the scope.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being processed.
+     * @param integer $stackPtr  The position where this token was found.
+     * @return void
+     */
+    protected function processTokenOutsideScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
     }
-
 }

@@ -21,11 +21,13 @@
  */
 class Cirici_Sniffs_Functions_ClosureDeclarationSniff implements PHP_CodeSniffer_Sniff {
 
-    public function register() {
+    public function register()
+    {
         return array(T_CLOSURE);
     }
 
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
         $spaces = 0;
 

@@ -30,25 +30,27 @@
 class Cirici_Sniffs_NamingConventions_UpperCaseConstantNameSniff implements PHP_CodeSniffer_Sniff
 {
 
-/**
- * Returns an array of tokens this test wants to listen for.
- *
- * @return array
- */
-    public function register() {
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
+    public function register()
+    {
         return array(T_STRING);
     }
 
-/**
- * Processes this test, when one of its tokens is encountered.
- *
- * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
- * @param integer              $stackPtr  The position of the current token in the
- *                                        stack passed in $tokens.
- *
- * @return void
- */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    /**
+     * Processes this test, when one of its tokens is encountered.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param integer              $stackPtr  The position of the current token in the
+     *                                        stack passed in $tokens.
+     *
+     * @return void
+     */
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
         $constName = $tokens[$stackPtr]['content'];
 
@@ -165,7 +167,12 @@ class Cirici_Sniffs_NamingConventions_UpperCaseConstantNameSniff implements PHP_
             }
 
             // Is this an instance of declare()
-            $prevPtrDeclare = $phpcsFile->findPrevious(array(T_WHITESPACE, T_OPEN_PARENTHESIS), ($stackPtr - 1), null, true);
+            $prevPtrDeclare = $phpcsFile->findPrevious(
+                array(T_WHITESPACE, T_OPEN_PARENTHESIS),
+                ($stackPtr - 1),
+                null,
+                true
+            );
             if ($tokens[$prevPtrDeclare]['code'] === T_DECLARE) {
                 return;
             }
@@ -188,11 +195,9 @@ class Cirici_Sniffs_NamingConventions_UpperCaseConstantNameSniff implements PHP_
             }
 
         } elseif (strtolower($constName) === 'define' || strtolower($constName) === 'constant') {
-
             /*
                 This may be a "define" or "constant" function call.
             */
-
             // Make sure this is not a method call.
             $prev = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
             if ($tokens[$prev]['code'] === T_OBJECT_OPERATOR
@@ -227,5 +232,4 @@ class Cirici_Sniffs_NamingConventions_UpperCaseConstantNameSniff implements PHP_
             }
         }
     }
-
 }

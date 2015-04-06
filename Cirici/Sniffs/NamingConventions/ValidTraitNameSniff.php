@@ -19,7 +19,8 @@
  * Ensures trait names are correct depending on the folder of the file.
  *
  */
-class Cirici_Sniffs_NamingConventions_ValidTraitNameSniff implements PHP_CodeSniffer_Sniff {
+class Cirici_Sniffs_NamingConventions_ValidTraitNameSniff implements PHP_CodeSniffer_Sniff
+{
 
 /**
  * Returns an array of tokens this test wants to listen for.
@@ -29,7 +30,8 @@ class Cirici_Sniffs_NamingConventions_ValidTraitNameSniff implements PHP_CodeSni
  *
  * @return array
  */
-    public function register() {
+    public function register()
+    {
         if (!defined('T_TRAIT')) {
             return array();
         }
@@ -43,7 +45,8 @@ class Cirici_Sniffs_NamingConventions_ValidTraitNameSniff implements PHP_CodeSni
  * @param integer $stackPtr  The position of the current token in the stack passed in $tokens.
  * @return void
  */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
         $traitName = $tokens[$stackPtr + 2]['content'];
 
@@ -52,5 +55,4 @@ class Cirici_Sniffs_NamingConventions_ValidTraitNameSniff implements PHP_CodeSni
             $phpcsFile->addError($error, $stackPtr, 'InvalidTraitName', array());
         }
     }
-
 }

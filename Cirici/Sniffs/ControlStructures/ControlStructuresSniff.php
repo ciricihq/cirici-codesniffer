@@ -20,14 +20,16 @@
  * while and dowhile are covered elsewhere
  *
  */
-class Cirici_Sniffs_ControlStructures_ControlStructuresSniff implements PHP_CodeSniffer_Sniff {
+class Cirici_Sniffs_ControlStructures_ControlStructuresSniff implements PHP_CodeSniffer_Sniff
+{
 
 /**
  * Returns an array of tokens this test wants to listen for.
  *
  * @return array
  */
-    public function register() {
+    public function register()
+    {
         return array(T_IF, T_ELSEIF, T_ELSE, T_FOREACH, T_FOR);
     }
 
@@ -41,7 +43,8 @@ class Cirici_Sniffs_ControlStructures_ControlStructuresSniff implements PHP_Code
  *                                        stack passed in $tokens.
  * @return void
  */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
 
         $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);

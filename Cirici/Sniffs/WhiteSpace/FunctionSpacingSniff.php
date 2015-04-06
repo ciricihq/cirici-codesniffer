@@ -18,25 +18,28 @@
  * Checks the separation between methods in a class or interface.
  *
  */
-class Cirici_Sniffs_WhiteSpace_FunctionSpacingSniff implements PHP_CodeSniffer_Sniff {
+class Cirici_Sniffs_WhiteSpace_FunctionSpacingSniff implements PHP_CodeSniffer_Sniff
+{
 
-/**
- * Returns an array of tokens this test wants to listen for.
- *
- * @return array
- */
-    public function register() {
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
+    public function register()
+    {
         return array(T_FUNCTION);
     }
 
-/**
- * Processes this sniff, when one of its tokens is encountered.
- *
- * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
- * @param integer $stackPtr The position of the current token in the stack passed in $tokens.
- * @return void
- */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    /**
+     * Processes this sniff, when one of its tokens is encountered.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param integer $stackPtr The position of the current token in the stack passed in $tokens.
+     * @return void
+     */
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
 
         /*
@@ -132,5 +135,4 @@ class Cirici_Sniffs_WhiteSpace_FunctionSpacingSniff implements PHP_CodeSniffer_S
             }
         }
     }
-
 }

@@ -20,26 +20,29 @@
  * the strings being concatenated.
  *
  */
-class Cirici_Sniffs_Strings_ConcatenationSpacingSniff implements PHP_CodeSniffer_Sniff {
+class Cirici_Sniffs_Strings_ConcatenationSpacingSniff implements PHP_CodeSniffer_Sniff
+{
 
-/**
- * Returns an array of tokens this test wants to listen for.
- *
- * @return array
- */
-    public function register() {
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
+    public function register()
+    {
         return array(T_STRING_CONCAT);
     }
 
-/**
- * Processes this test, when one of its tokens is encountered.
- *
- * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
- * @param integer $stackPtr The position of the current token in the
- *    stack passed in $tokens.
- * @return void
- */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    /**
+     * Processes this test, when one of its tokens is encountered.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param integer $stackPtr The position of the current token in the
+     *    stack passed in $tokens.
+     * @return void
+     */
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
         if ($tokens[($stackPtr - 1)]['code'] !== T_WHITESPACE) {
             $message = 'Expected 1 space before ., but 0 found';
@@ -67,5 +70,4 @@ class Cirici_Sniffs_Strings_ConcatenationSpacingSniff implements PHP_CodeSniffer
             }
         }
     }
-
 }

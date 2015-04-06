@@ -23,21 +23,22 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === fa
  * Checks the naming of variables and member variables.
  *
  */
-class Cirici_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff {
-
-/**
- * Processes this test, when one of its tokens is encountered.
- *
- * Processes variables, we skip processing object properties because
- * they could come from things like PDO which doesn't follow the normal
- * conventions and causes additional failures.
- *
- * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
- * @param integer $stackPtr  The position of the current token in the
- *    stack passed in $tokens.
- * @return void
- */
-    protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+class Cirici_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
+{
+    /**
+     * Processes this test, when one of its tokens is encountered.
+     *
+     * Processes variables, we skip processing object properties because
+     * they could come from things like PDO which doesn't follow the normal
+     * conventions and causes additional failures.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param integer $stackPtr  The position of the current token in the
+     *    stack passed in $tokens.
+     * @return void
+     */
+    protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
         $varName = ltrim($tokens[$stackPtr]['content'], '$');
 
@@ -83,32 +84,34 @@ class Cirici_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSni
             return;
         }
 
-        if ($this->_isValidVar($varName) === false) {
+        if ($this->isValidVar($varName) === false) {
             $error = 'Variable "%s" is not in valid camel caps format';
             $data = array($originalVarName);
             $phpcsFile->addError($error, $stackPtr, 'NotCamelCaps', $data);
         }
     }
 
-/**
- * Processes class member variables.
- *
- * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
- * @param integer $stackPtr  The position of the current token in the
- *    stack passed in $tokens.
- * @return void
- */
-    protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    /**
+     * Processes class member variables.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param integer $stackPtr  The position of the current token in the
+     *    stack passed in $tokens.
+     * @return void
+     */
+    protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
     }
 
-/**
- * Processes the variable found within a double quoted string.
- *
- * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
- * @param integer $stackPtr The position of the double quoted string.
- * @return void
- */
-    protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    /**
+     * Processes the variable found within a double quoted string.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param integer $stackPtr The position of the double quoted string.
+     * @return void
+     */
+    protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
 
         $phpReservedVars = array(
@@ -140,7 +143,7 @@ class Cirici_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSni
                     }
                 }
 
-                if ($this->_isValidVar($varName) === false) {
+                if ($this->isValidVar($varName) === false) {
                     $error = 'Variable "%s" is not in valid camel caps format';
                     $data = array($originalVarName);
                     $phpcsFile->addError($error, $stackPtr, 'StringVarNotCamelCaps', $data);
@@ -149,16 +152,17 @@ class Cirici_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSni
         }
     }
 
-/**
- * Check that a variable is a valid shape.
- *
- * Variables in CakePHP can either be $fooBar, $FooBar, $_fooBar, or $_FooBar.
- *
- * @param string $string The variable to check.
- * @param boolea $public Whether or not the variable is public.
- * @return boolean
- */
-    protected function _isValidVar($string, $public = true) {
+    /**
+     * Check that a variable is a valid shape.
+     *
+     * Variables in CakePHP can either be $fooBar, $FooBar, $_fooBar, or $_FooBar.
+     *
+     * @param string $string The variable to check.
+     * @param boolea $public Whether or not the variable is public.
+     * @return boolean
+     */
+    protected function isValidVar($string, $public = true)
+    {
         $firstChar = '[a-zA-Z]';
         if (!$public) {
             $firstChar = '[_]{1,2}' . $firstChar;
@@ -177,5 +181,4 @@ class Cirici_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSni
         }
         return true;
     }
-
 }

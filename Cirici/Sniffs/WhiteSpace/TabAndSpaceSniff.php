@@ -20,7 +20,8 @@
  * Also check for "\t " - a tab followed by a space, which is a common similar mistake
  *
  */
-class Cirici_Sniffs_WhiteSpace_TabAndSpaceSniff implements PHP_CodeSniffer_Sniff {
+class Cirici_Sniffs_WhiteSpace_TabAndSpaceSniff implements PHP_CodeSniffer_Sniff
+{
 
 /**
  * A list of tokenizers this sniff supports.
@@ -38,7 +39,8 @@ class Cirici_Sniffs_WhiteSpace_TabAndSpaceSniff implements PHP_CodeSniffer_Sniff
  *
  * @return array
  */
-    public function register() {
+    public function register()
+    {
         return array(T_WHITESPACE);
     }
 
@@ -46,11 +48,12 @@ class Cirici_Sniffs_WhiteSpace_TabAndSpaceSniff implements PHP_CodeSniffer_Sniff
  * Processes this test, when one of its tokens is encountered.
  *
  * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
- * @param integer $stackPtr  The position of the current token
+ * @param int $stackPtr  The position of the current token
  *    in the stack passed in $tokens.
  * @return void
  */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
 
         $line = $tokens[$stackPtr]['line'];
@@ -71,5 +74,4 @@ class Cirici_Sniffs_WhiteSpace_TabAndSpaceSniff implements PHP_CodeSniffer_Sniff
             $phpcsFile->addError($error, $stackPtr);
         }
     }
-
 }

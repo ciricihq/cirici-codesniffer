@@ -18,7 +18,8 @@
  * Ensures all the use are in alphabetical order.
  *
  */
-class Cirici_Sniffs_Formatting_UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff {
+class Cirici_Sniffs_Formatting_UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
+{
 
 /**
  * Processed files
@@ -39,7 +40,8 @@ class Cirici_Sniffs_Formatting_UseInAlphabeticalOrderSniff implements PHP_CodeSn
  *
  * @return array
  */
-    public function register() {
+    public function register()
+    {
         return array(T_USE);
     }
 
@@ -50,7 +52,8 @@ class Cirici_Sniffs_Formatting_UseInAlphabeticalOrderSniff implements PHP_CodeSn
  * @param integer $stackPtr The position of the current token in the stack passed in $tokens.
  * @return void
  */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         if (isset($this->_processed[$phpcsFile->getFilename()])) {
             return;
         }

@@ -17,7 +17,8 @@
  * - bool instead of boolean
  * - int instead of integer
  */
-class Cirici_Sniffs_PHP_TypeCastingSniff implements PHP_CodeSniffer_Sniff {
+class Cirici_Sniffs_PHP_TypeCastingSniff implements PHP_CodeSniffer_Sniff
+{
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -29,7 +30,8 @@ class Cirici_Sniffs_PHP_TypeCastingSniff implements PHP_CodeSniffer_Sniff {
      *
      * @return array
      */
-    public function register() {
+    public function register()
+    {
         return array_merge(PHP_CodeSniffer_Tokens::$castTokens, array(T_BOOLEAN_NOT));
     }
 
@@ -41,7 +43,8 @@ class Cirici_Sniffs_PHP_TypeCastingSniff implements PHP_CodeSniffer_Sniff {
      *                                        stack passed in $tokens.
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
 
         // Process !! casts
@@ -77,5 +80,4 @@ class Cirici_Sniffs_PHP_TypeCastingSniff implements PHP_CodeSniffer_Sniff {
             return;
         }
     }
-
 }

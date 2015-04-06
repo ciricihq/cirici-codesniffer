@@ -8,10 +8,10 @@
  * This file is originally written by Greg Sherwood and Marc McIntyre, but
  * modified for CakePHP.
  *
- * @copyright     2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @link          http://pear.php.net/package/PHP_CodeSniffer_CakePHP
- * @since         CakePHP CodeSniffer 0.1.1
- * @license       https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @link      http://pear.php.net/package/PHP_CodeSniffer_CakePHP
+ * @since     CakePHP CodeSniffer 0.1.1
+ * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  */
 
 /**
@@ -20,50 +20,53 @@
  * for indentation rather than spaces.
  *
  */
-class Cirici_Sniffs_WhiteSpace_ScopeIndentSniff implements PHP_CodeSniffer_Sniff {
+class Cirici_Sniffs_WhiteSpace_ScopeIndentSniff implements PHP_CodeSniffer_Sniff
+{
 
-/**
- * The number of spaces code should be indented.
- *
- * @var integer
- */
+    /**
+     * The number of spaces code should be indented.
+     *
+     * @var int
+     */
     public $indent = 1;
 
-/**
- * Does the indent need to be exactly right.
- *
- * If TRUE, indent needs to be exactly $ident spaces. If FALSE,
- * indent needs to be at least $ident spaces (but can be more).
- *
- * @var boolean
- */
+    /**
+     * Does the indent need to be exactly right.
+     *
+     * If TRUE, indent needs to be exactly $ident spaces. If FALSE,
+     * indent needs to be at least $ident spaces (but can be more).
+     *
+     * @var bool
+     */
     public $exact = false;
 
-/**
- * Any scope openers that should not cause an indent.
- *
- * @var array(int)
- */
-    protected $_nonIndentingScopes = array();
+    /**
+     * Any scope openers that should not cause an indent.
+     *
+     * @var array(int)
+     */
+    protected $nonIndentingScopes = array();
 
-/**
- * Returns an array of tokens this test wants to listen for.
- *
- * @return array
- */
-    public function register() {
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
+    public function register()
+    {
         return PHP_CodeSniffer_Tokens::$scopeOpeners;
     }
 
-/**
- * Processes this test, when one of its tokens is encountered.
- *
- * @param PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
- * @param integer $stackPtr The position of the current token
- *    in the stack passed in $tokens.
- * @return void
- */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    /**
+     * Processes this test, when one of its tokens is encountered.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
+     * @param int $stackPtr The position of the current token
+     *    in the stack passed in $tokens.
+     * @return void
+     */
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
 
         // If this is an inline condition (ie. there is no scope opener), then
@@ -102,13 +105,13 @@ class Cirici_Sniffs_WhiteSpace_ScopeIndentSniff implements PHP_CodeSniffer_Sniff
 
         // Based on the conditions that surround this token, determine the
         // indent that we expect this current content to be.
-        $expectedIndent = $this->_calculateExpectedIndent($tokens, $firstToken);
+        $expectedIndent = $this->calculateExpectedIndent($tokens, $firstToken);
 
         $scopeOpener = $tokens[$stackPtr]['scope_opener'];
         $scopeCloser = $tokens[$stackPtr]['scope_closer'];
 
         // Some scopes are expected not to have indents.
-        if (in_array($tokens[$firstToken]['code'], $this->_nonIndentingScopes) === false) {
+        if (in_array($tokens[$firstToken]['code'], $this->nonIndentingScopes) === false) {
             $indent = ($expectedIndent + $this->indent);
         } else {
             $indent = $expectedIndent;
@@ -121,7 +124,6 @@ class Cirici_Sniffs_WhiteSpace_ScopeIndentSniff implements PHP_CodeSniffer_Sniff
         // Only loop over the content beween the opening and closing brace, not
         // the braces themselves.
         for ($i = ($scopeOpener + 1); $i < $scopeCloser; $i++) {
-
             // If this token is another scope, skip it as it will be handled by
             // another call to this sniff.
             if (in_array($tokens[$i]['code'], PHP_CodeSniffer_Tokens::$scopeOpeners) === true) {
@@ -189,8 +191,7 @@ class Cirici_Sniffs_WhiteSpace_ScopeIndentSniff implements PHP_CodeSniffer_Sniff
 
                 // If we're starting a new PHP block that has the scope closer
                 // as the next token we'll skip the remaining checks as the scope is closed.
-                if (
-                    $tokens[$firstToken]['code'] === T_OPEN_TAG &&
+                if ($tokens[$firstToken]['code'] === T_OPEN_TAG &&
                     $scopeCloser == $firstToken + 1
                 ) {
                     continue;
@@ -249,14 +250,15 @@ class Cirici_Sniffs_WhiteSpace_ScopeIndentSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-/**
- * Calculates the expected indent of a token.
- *
- * @param array $tokens The stack of tokens for this file.
- * @param integer $stackPtr The position of the token to get indent for.
- * @return integer
- */
-    protected function _calculateExpectedIndent(array $tokens, $stackPtr) {
+    /**
+     * Calculates the expected indent of a token.
+     *
+     * @param array $tokens The stack of tokens for this file.
+     * @param int $stackPtr The position of the token to get indent for.
+     * @return int
+     */
+    protected function calculateExpectedIndent(array $tokens, $stackPtr)
+    {
         $conditionStack = array();
 
         // Empty conditions array (top level structure).
@@ -278,12 +280,10 @@ class Cirici_Sniffs_WhiteSpace_ScopeIndentSniff implements PHP_CodeSniffer_Sniff
         foreach ($tokenConditions as $id => $condition) {
             // If it's an indenting scope ie. it's not in our array of
             // scopes that don't indent, add it to our condition stack.
-            if (in_array($condition, $this->_nonIndentingScopes) === false) {
+            if (in_array($condition, $this->nonIndentingScopes) === false) {
                 $conditionStack[$id] = $condition;
             }
         }
         return ((count($conditionStack) * $this->indent) + 1);
     }
-
 }
-

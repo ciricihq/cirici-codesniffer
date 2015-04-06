@@ -24,7 +24,8 @@ class Cirici_Sniffs_Commenting_FunctionCommentTypeSniff implements PHP_CodeSniff
      *
      * @return array
      */
-    public function register() {
+    public function register()
+    {
         return array(T_DOC_COMMENT);
     }
 
@@ -36,7 +37,8 @@ class Cirici_Sniffs_Commenting_FunctionCommentTypeSniff implements PHP_CodeSniff
      * in the stack passed in $tokens.
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
 
         // We are only interested in function/class/interface doc block comments.
@@ -77,7 +79,8 @@ class Cirici_Sniffs_Commenting_FunctionCommentTypeSniff implements PHP_CodeSniff
      * @param string $to
      * @return void
      */
-    protected function _check(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $from, $to) {
+    protected function _check(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $from, $to)
+    {
         $tokens = $phpcsFile->getTokens();
         $content = $tokens[$stackPtr]['content'];
 
