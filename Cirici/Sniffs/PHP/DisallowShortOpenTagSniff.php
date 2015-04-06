@@ -31,12 +31,12 @@ class Cirici_Sniffs_PHP_DisallowShortOpenTagSniff implements PHP_CodeSniffer_Sni
  *
  * @return array
  */
-	public function register() {
-		return array(
-			T_OPEN_TAG,
-			T_INLINE_HTML
-		);
-	}
+    public function register() {
+        return array(
+            T_OPEN_TAG,
+            T_INLINE_HTML
+        );
+    }
 
 /**
  * Processes this test, when one of its tokens is encountered.
@@ -47,15 +47,15 @@ class Cirici_Sniffs_PHP_DisallowShortOpenTagSniff implements PHP_CodeSniffer_Sni
  *
  * @return void
  */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
-		$tokens = $phpcsFile->getTokens();
-		$openTag = $tokens[$stackPtr];
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+        $tokens = $phpcsFile->getTokens();
+        $openTag = $tokens[$stackPtr];
 
-		if (trim($openTag['content']) === '<?') {
-			$error = 'Short PHP opening tag used; expected "<?php" but found "%s"';
-			$data = array(trim($openTag['content']));
-			$phpcsFile->addError($error, $stackPtr, 'Found', $data);
-		}
-	}
+        if (trim($openTag['content']) === '<?') {
+            $error = 'Short PHP opening tag used; expected "<?php" but found "%s"';
+            $data = array(trim($openTag['content']));
+            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
+        }
+    }
 
 }

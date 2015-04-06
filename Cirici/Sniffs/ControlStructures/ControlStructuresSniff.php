@@ -27,9 +27,9 @@ class Cirici_Sniffs_ControlStructures_ControlStructuresSniff implements PHP_Code
  *
  * @return array
  */
-	public function register() {
-		return array(T_IF, T_ELSEIF, T_ELSE, T_FOREACH, T_FOR);
-	}
+    public function register() {
+        return array(T_IF, T_ELSEIF, T_ELSE, T_FOREACH, T_FOR);
+    }
 
 /**
  * Processes this test, when one of its tokens is encountered.
@@ -41,23 +41,23 @@ class Cirici_Sniffs_ControlStructures_ControlStructuresSniff implements PHP_Code
  *                                        stack passed in $tokens.
  * @return void
  */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
-		$tokens = $phpcsFile->getTokens();
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+        $tokens = $phpcsFile->getTokens();
 
-		$nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
-		if ($tokens[$nextToken]['code'] === T_OPEN_PARENTHESIS) {
-			$closer = $tokens[$nextToken]['parenthesis_closer'];
-			$diff = $closer - $stackPtr;
-			$nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + $diff + 1), null, true);
-		}
-		if ($tokens[$nextToken]['code'] === T_IF) {
-			// "else if" is not checked by this sniff, another sniff takes care of that.
-			return;
-		}
-		if ($tokens[$nextToken]['code'] !== T_OPEN_CURLY_BRACKET && $tokens[$nextToken]['code'] !== T_COLON) {
-			$error = 'Curly brackets required for if/elseif/else.';
-			$phpcsFile->addError($error, $stackPtr, 'NotAllowed');
-		}
-	}
+        $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
+        if ($tokens[$nextToken]['code'] === T_OPEN_PARENTHESIS) {
+            $closer = $tokens[$nextToken]['parenthesis_closer'];
+            $diff = $closer - $stackPtr;
+            $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + $diff + 1), null, true);
+        }
+        if ($tokens[$nextToken]['code'] === T_IF) {
+            // "else if" is not checked by this sniff, another sniff takes care of that.
+            return;
+        }
+        if ($tokens[$nextToken]['code'] !== T_OPEN_CURLY_BRACKET && $tokens[$nextToken]['code'] !== T_COLON) {
+            $error = 'Curly brackets required for if/elseif/else.';
+            $phpcsFile->addError($error, $stackPtr, 'NotAllowed');
+        }
+    }
 
 }

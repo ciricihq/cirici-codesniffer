@@ -26,9 +26,9 @@ class Cirici_Sniffs_ControlStructures_ElseIfDeclarationSniff implements PHP_Code
  *
  * @return array
  */
-	public function register() {
-		return array(T_ELSE);
-	}
+    public function register() {
+        return array(T_ELSE);
+    }
 
 /**
  * Processes this test, when one of its tokens is encountered.
@@ -40,16 +40,16 @@ class Cirici_Sniffs_ControlStructures_ElseIfDeclarationSniff implements PHP_Code
  *                                        stack passed in $tokens.
  * @return void
  */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
-		$tokens = $phpcsFile->getTokens();
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+        $tokens = $phpcsFile->getTokens();
 
-		$nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
-		if ($tokens[$nextToken]['code'] !== T_IF) {
-			return;
-		}
+        $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
+        if ($tokens[$nextToken]['code'] !== T_IF) {
+            return;
+        }
 
-		$error = 'Usage of ELSE IF not allowed; use ELSEIF instead';
-		$phpcsFile->addError($error, $stackPtr, 'NotAllowed');
-	}
+        $error = 'Usage of ELSE IF not allowed; use ELSEIF instead';
+        $phpcsFile->addError($error, $stackPtr, 'NotAllowed');
+    }
 
 }

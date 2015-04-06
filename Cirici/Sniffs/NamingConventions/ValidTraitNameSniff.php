@@ -29,12 +29,12 @@ class Cirici_Sniffs_NamingConventions_ValidTraitNameSniff implements PHP_CodeSni
  *
  * @return array
  */
-	public function register() {
-		if (!defined('T_TRAIT')) {
-			return array();
-		}
-		return array(T_TRAIT);
-	}
+    public function register() {
+        if (!defined('T_TRAIT')) {
+            return array();
+        }
+        return array(T_TRAIT);
+    }
 
 /**
  * Processes this test, when one of its tokens is encountered.
@@ -43,14 +43,14 @@ class Cirici_Sniffs_NamingConventions_ValidTraitNameSniff implements PHP_CodeSni
  * @param integer $stackPtr  The position of the current token in the stack passed in $tokens.
  * @return void
  */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
-		$tokens = $phpcsFile->getTokens();
-		$traitName = $tokens[$stackPtr + 2]['content'];
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+        $tokens = $phpcsFile->getTokens();
+        $traitName = $tokens[$stackPtr + 2]['content'];
 
-		if (substr($traitName, -5) !== 'Trait') {
-			$error = 'Traits must have a "Trait" suffix.';
-			$phpcsFile->addError($error, $stackPtr, 'InvalidTraitName', array());
-		}
-	}
+        if (substr($traitName, -5) !== 'Trait') {
+            $error = 'Traits must have a "Trait" suffix.';
+            $phpcsFile->addError($error, $stackPtr, 'InvalidTraitName', array());
+        }
+    }
 
 }
