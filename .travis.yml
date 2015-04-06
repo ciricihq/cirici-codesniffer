@@ -6,7 +6,7 @@ php:
   - 5.6
 
 before_script:
-  - mv ../cakephp-codesniffer ../cakephp_codesniffer && cd ../cakephp_codesniffer
+  - mv ../cirici-codesniffer ../cirici_codesniffer && cd ../cirici_codesniffer
   - composer selfupdate
   - composer install
 
