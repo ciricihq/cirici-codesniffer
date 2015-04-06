@@ -1,4 +1,4 @@
-# Cirici Code Sniffer [![Build Status](https://travis-ci.org/cakephp/cakephp-codesniffer.png?branch=master)](http://travis-ci.org/cakephp/cakephp-codesniffer)
+# Cirici Code Sniffer [![Build Status](https://travis-ci.org/ciricihq/cirici-codesniffer.png?branch=master)](https://travis-ci.org/ciricihq/cirici-codesniffer)
 
 This code works with [phpcs](http://pear.php.net/manual/en/package.php.php-codesniffer.php)
 and checks code against the coding standards used in Cirici Thinking Digital PHP projects.
