@@ -1,21 +1,26 @@
 {
-    "name": "cakephp/cakephp-codesniffer",
-    "description": "CakePHP CodeSniffer Standards",
+    "name": "ciricihq/cirici-codesniffer",
+    "description": "Cirici CodeSniffer Standards",
     "type": "library",
     "keywords": ["framework", "codesniffer"],
-    "homepage": "http://cakephp.org",
+    "homepage": "http://cirici.com",
     "license": "MIT",
     "authors": [
         {
             "name": "CakePHP Community",
             "homepage": "https://github.com/cakephp/cakephp-codesniffer/graphs/contributors"
+        },
+        {
+            "name": "Òscar Casajuana",
+            "homepage": "http://racotecnic.com"
+        },
+        {
+            "name": "Cirici Thinking Digital",
+            "homepage": "http://cirici.com"
         }
     ],
     "support": {
-        "issues": "https://github.com/cakephp/cakephp-codesniffer/issues",
-        "forum": "http://stackoverflow.com/tags/cakephp",
-        "irc": "irc://irc.freenode.org/cakephp",
-        "source": "https://github.com/cakephp/cakephp-codesniffer"
+        "source": "https://github.com/ciricihq/cirici-codesniffer"
     },
     "require": {
         "squizlabs/php_codesniffer": "2.*"
