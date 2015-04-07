@@ -48,15 +48,16 @@ class CiriciOld_Sniffs_ControlStructures_ControlSignatureSniff extends PHP_CodeS
     protected function getPatterns()
     {
         return array(
-            'try {EOL...}\s+catch (...) {EOL...}',
+            'try {EOL...}',
+            'catch (...) {EOL...}',
             'do {EOL...} while (...);EOL',
             'while (...) {EOL',
             'for (...) {EOL',
             'if (...) {EOL',
             'foreach (...) {EOL',
-            '}\s+else if (...) {EOL',
-            '}\s+elseif (...) {EOL',
-            '}\s+else {EOL',
+            'else if (...) {EOL',
+            'elseif (...) {EOL',
+            'else {EOL',
             'do {EOL',
        );
 
