@@ -9,29 +9,12 @@
   <rule ref="PSR2">
     <exclude name="Squiz.ControlStructures.ControlSignature" />
   </rule>
-
-
-  <!--
-  Temporarily ignore until API docblock formatting and line length issues in core code are fixed.
-  <rule ref="Cirici.Commenting.FunctionComment.ParamCommentNotCapital">
-    <severity>0</severity>
+  <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
+   <severity>0</severity>
   </rule>
-  <rule ref="Cirici.Commenting.FunctionComment.ParamCommentFullStop">
-    <severity>0</severity>
+  <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+   <severity>0</severity>
   </rule>
-  <rule ref="Cirici.Commenting.FunctionComment.ThrowsNotCapital">
-    <severity>0</severity>
-  </rule>
-  <rule ref="Cirici.Commenting.FunctionComment.ThrowsNoFullStop">
-    <severity>0</severity>
-  </rule>
-  <rule ref="Cirici.Commenting.FunctionComment.EmptyThrows">
-    <severity>0</severity>
-  </rule>
-  <rule ref="Generic.Files.LineLength.TooLong">
-    <severity>0</severity>
-  </rule>
-  -->
 
   <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
 
