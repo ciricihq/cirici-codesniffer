@@ -7,10 +7,10 @@
 	 mapTestClassNameToCoveredClassName="false"
 	 strict="false"
 	 verbose="false"
-	 bootstrap="./Cirici/tests/bootstrap.php">
+	 bootstrap="./CiriciOld/tests/bootstrap.php">
 	<testsuites>
 		<testsuite name="phpcs">
-			<file>./Cirici/tests/CiriciPHPStandardTest.php</file>
+			<file>./CiriciOld/tests/CiriciPHPStandardTest.php</file>
 		</testsuite>
 	</testsuites>
 </phpunit>
